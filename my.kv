@@ -1,0 +1,126 @@
+<Label>:
+    font_size: 20
+    size_hint: 0.2,0.1
+
+<Button>:
+    font_size: 20
+    size_hint: 0.2,0.1
+
+<TextInput>:
+    font_size: 20
+    size_hint: 0.2,0.1
+    multiline: False
+
+
+<StartUp>:
+    name: "startup"
+
+    title: title
+    name: name
+    name_input: name_input
+
+    FloatLayout:
+        size: root.width, root.height
+        
+        Label:
+            id: title
+            text: "Irregular Verbs Test"
+            pos_hint: {"x":0.4 , "y":0.8}            
+
+        Label:
+            id: name
+            text: "Your Name:  "
+            pos_hint: {"x":0.3 , "y":0.5}
+
+        TextInput:
+            id: name_input
+            pos_hint: {"x":0.5 , "y":0.5}
+
+        Button:
+            text: "Start"
+            size_hint: 0.4,0.2
+            pos_hint: {"x":0.3, "y":0.1}
+            on_release: root.start_game()
+
+
+
+<MainWindow>:
+    name: "main"
+
+    answer_input: answer_input
+    question_num: question_num
+    question: question
+    time_counter: time_counter
+    answer_button: answer_button
+    score: score
+
+    FloatLayout:
+        size: root.width, root.height
+
+        TextInput:
+            id: answer_input
+            size_hint: 0.6, 0.4
+            pos_hint: {"bottom": 1, "left":1}
+            
+
+        Label:
+            text:"Question_1 :"
+            size_hint: 0.2, 0.1
+            pos_hint: {"y":0.7 , "left":1}
+            id: question_num
+
+        Label:
+            text:"What is the past perfect of the "
+            size_hint: 0.8, 0.6
+            pos_hint: {"top": 1, "right":1}
+            id: question
+
+        Label:
+            id: time_counter
+            text: "Time "
+            size_hint: 0.2, 0.1
+            pos_hint: {"y":0.5, "left":1}
+
+        Label:
+            id: score
+            text: "Score: "
+            size_hint: 0.2, 0.1
+            pos_hint: {"y":0.6, "left":1}
+
+        Button:
+            id: answer_button
+            text:"ANSWER"
+            size_hint: 0.4, 0.4
+            pos_hint: {"bottom": 1, "right":1}
+            on_press: root.check_answer()
+
+        
+<ResultWindow>:
+    name: "results"
+
+    score: score
+    high_score: high_score
+
+    FloatLayout:
+        size: root.width, root.height
+
+        Label:
+            id: score
+            text: "Your Score: "
+            size_hint: 0.2, 0.1
+            pos_hint: {"x":0.3 ,"y":0.8}
+
+        Label:
+            id: high_score
+            text: "High Scores: "
+            size_hint: 0.2, 0.6
+            pos_hint: {"x":0.4 ,"y":0.4}
+
+        Button:
+            text: "Play Again?"
+            font_size: 28
+            size_hint: 0.3, 0.2
+            pos_hint: {"x":0.4 ,"bottom":1}
+            on_release:
+                root.manager.transition.direction = "right"
+                app.root.current = "main"
